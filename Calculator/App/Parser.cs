@@ -9,29 +9,48 @@ namespace Calculator.App
 {
 	public class Parser
 	{
+		static Dictionary<string, int> values = new Dictionary<string, int>()
+		{
+			{ "M", 1000 },
+			{ "CM", 900 },
+			{ "D", 500 },
+			{ "CD", 400 },
+			{ "C", 100 },
+			{ "XC", 90 },
+			{ "L", 50 },
+			{ "XL", 40 },
+			{ "X" , 10},
+			{ "IX", 9 },
+			{ "V", 5 },
+			{ "IV", 4 },
+			{ "I", 1}
+		};
+
 		public static int ToArabic(string roman)
 		{
-
-			char[] digits = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
-			int[] values = { 1, 5, 10, 50, 100, 500, 1000 };
-
-			int pos = 1;
-			int ind = Array.IndexOf(digits, roman[pos]);
-			if(ind == -1)
+			int result = 0;
+			for(int i=0;i<roman.Length;)
 			{
-				throw new ArgumentException($"Invalid digit: {roman[pos]}");
-			}
-			int res = values[ind];
+				char char1 = roman[i];
+				char char2 = '-';
+				if (i < roman.Length - 1)
+				{
+					char2 = roman[i + 1];
+				}
+				string _2chars = char1.ToString() + char2.ToString();
+				if(values.ContainsKey(_2chars))
+				{
+					result += values[_2chars];
+					i += 2;
+				}
+				else
+				{
+					result += values[char1.ToString()];
+					i++;
+				}
 
-			ind = Array.IndexOf(digits, roman[pos-1]);
-			if(ind==-1)	
-			{
-				throw new ArgumentException($"Invalid digit: {roman[pos]}");
 			}
-			
-			if (values[ind] < res) res -= values[ind];
-			else res += values[ind];
-			return res;
+			return result;
 		}
 		public static string ToRoman(int arabic)
 		{

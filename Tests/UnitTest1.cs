@@ -6,14 +6,9 @@ namespace Tests
 	public class UnitTest1
 	{
 		[TestMethod]
-		public void TestMethod1()
+		public void TestToArabic()
 		{
-			Calc calc = new Calc();
-			Assert.IsNotNull(calc);
-
-			Assert.AreEqual(2, Parser.ToArabic("II"));
-			Assert.AreEqual(4, Parser.ToArabic("IV"));
-			Assert.AreEqual(40, Parser.ToArabic("XL"));
+		 //TODO: TESTS
 			
 		}
 	}
