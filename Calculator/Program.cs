@@ -4,4 +4,4 @@ using Calculator.App;
 Calc calc = new Calc();
 
 
-Console.WriteLine(Parser.ToArabic("MCMLXXXIV"));
+// Console.WriteLine(Parser.ToArabic("MCMLXXXIV"));
