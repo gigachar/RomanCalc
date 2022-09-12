@@ -153,8 +153,33 @@ namespace Tests
             Assert.IsTrue(
                 Assert.ThrowsException<ArgumentException>(
                     () => RomanNumber.Parse(String.Empty)
-                ).Message.StartsWith("Invalid digit")
+                ).Message.StartsWith("Invalid format")
             );
-        }
+			Assert.IsTrue(
+				Assert.ThrowsException<ArgumentException>(
+					() => RomanNumber.Parse(null)
+				).Message.StartsWith("Invalid format")
+			);
+		}
+		[TestMethod]
+		public void RomanNumberParseN()
+		{
+            Assert.AreEqual(0, RomanNumber.Parse("N"));
+			Assert.IsTrue(
+				Assert.ThrowsException<ArgumentException>(
+					() => RomanNumber.Parse("XN")
+				).Message.StartsWith("Invalid format")
+			);
+			Assert.IsTrue(
+				Assert.ThrowsException<ArgumentException>(
+					() => RomanNumber.Parse("NX")
+				).Message.StartsWith("Invalid format")
+			);
+			Assert.IsTrue(
+				Assert.ThrowsException<ArgumentException>(
+					() => RomanNumber.Parse("NNN")
+				).Message.StartsWith("Invalid format")
+			);
+		}
 	}
 }

@@ -150,10 +150,16 @@ namespace Calculator.App
         // }
         public static Int32 Parse(String str)
         {
-            if (str == String.Empty) {throw new ArgumentException(nameof(str));}
+            if (str == String.Empty || str==null) {throw new ArgumentException("Invalid format");}
             if (str.Any(Char.IsWhiteSpace)) {throw new ArgumentException(nameof(str));}
                 char[] digits = { 'N', 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
                 int[] digitValues = { 0, 1, 5, 10, 50, 100, 500, 1000 };
+                
+
+                if(str.Contains('N') && str.Length>1)
+			    {
+				    throw new ArgumentException($"Invalid format");
+			    }
 
                 int pos = str.Length - 1;  // позиція останньої цифри у str
                 int ind = Array.IndexOf(digits, str[pos]);  // індекс цифри у масиві
